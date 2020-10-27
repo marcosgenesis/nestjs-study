@@ -1,35 +1,32 @@
-import { Student } from 'src/student/student.entity';
+import { Course } from 'src/course/course.entity';
 import {
-  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  Unique,
   UpdateDateColumn,
   ManyToMany,
-  JoinTable,
 } from 'typeorm';
 
 @Entity()
-@Unique(['title'])
-export class Course extends BaseEntity {
+export class Student {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  title: string;
+  name: string;
 
   @Column()
-  profesor: string;
+  lastname: string;
+
+  @Column()
+  enrollment: string;
 
   @ManyToMany(
-    () => Student,
-    student => student.courses,
-    { cascade: true },
+    () => Course,
+    course => course.students,
   )
-  @JoinTable()
-  students: Student[];
+  courses: Course[];
 
   @CreateDateColumn()
   createdAt: Date;
