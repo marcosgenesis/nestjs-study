@@ -1,12 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { StudentResponse } from 'src/api-doc/student.response';
 import { Student } from 'src/student/student.entity';
+import { StudentResponse } from './student.response';
 
-export class createCourseDTO {
+export class CourseResponse {
+  @ApiProperty()
+  id: string;
+
   @ApiProperty()
   title: string;
+
   @ApiProperty()
   profesor: string;
+
   @ApiProperty({ type: StudentResponse })
   students: Student[];
 }
